@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ env('APP_NAME')}}</title>
 
-    @Vite ('resources/js/app.js')
-</head>
-<body>
+@extends('layouts/main')
+@section('title','Home')
+
+
+@section('content')
     
-  @include('includes.header')
-  <main>
 <div class='container'>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-          <h5 class="card-title">Card title</h5>
-          <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <div class="row">
+        
+        @foreach ($movies as $movie )
+        <div class="card m-2 border-dark" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title text-center my-3">{{$movie->title}}</h5>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Titolo originale:</strong> {{$movie->original_title}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Nazionalità:</strong> {{$movie->nationality}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Data di uscita:</strong> {{$movie->date}}</h6>
+                <h6 class="card-subtitle mb-2 text-muted"><strong>Voto:</strong> {{$movie->vote}}</h6>
+            </div>
         </div>
-      </div>
+        
+        @endforeach
+    </div>
 </div>
-  </main>
-</body>
-</html>
+
+@endsection
